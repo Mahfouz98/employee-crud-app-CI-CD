@@ -18,7 +18,3 @@ variable "aws_region" {
   type        = string
 }
 
-variable "keypair" {
-  description = "Key Pair"
-  type = string
-  }
