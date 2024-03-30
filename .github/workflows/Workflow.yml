@@ -94,4 +94,5 @@ jobs:
               sudo systemctl enable mariadb --now
               sudo mariadb --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
               sudo apt install openjdk-17-jdk openjdk-17-jre -y
-              sudo bash -c 'java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar &'
+              sudo bash -c 'echo -e "/usr/bin/java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar'
+              
