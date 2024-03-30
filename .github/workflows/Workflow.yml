@@ -75,16 +75,16 @@ jobs:
         with:
           timeout: 120s
           host: ${{ steps.EIP.outputs.ec2_address }}
-          username: ec2-user
+          username: ubuntu
           port: 22
           key: ${{ secrets.SSH_KEY_PATH }}
           source: artifacts/
-          target: /home/ec2-user/app
+          target: /home/ubuntu/app
       - name: multiple command
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ steps.EIP.outputs.ec2_address  }}
-          username: ec2-user
+          username: ubuntu
           key: ${{ secrets.SSH_KEY_PATH }}
           port: 22
           script: |
@@ -92,5 +92,5 @@ jobs:
               sudo systemctl enable mariadb.service --now
               sudo mariadb --execute="UNINSTALL COMPONENT 'file://component_validate_password'; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
               sudo yum install java -y
-              java -jar /home/ec2-user/app/artifacts/employee-0.0.1-SNAPSHOT.jar
+              java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar
               
