@@ -89,14 +89,11 @@ jobs:
           script: |
               sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm 
               sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
-              sudo dnf install mysql-community-server -y
-              sudo systemctl start mysqld
-              sudo echo "skip-grant-tables" >> /etc/my.cnf
-              sudo systemctl restart mysqld
-              sudo mysql 
-              ALTER USER 'root'@'localhost' IDENTIFIED BY BY 'root';
-              GRANT ALL PRIVILEGES ON *.* TO 'root'@'host';
-              FLUSH PRIVILEGES;
-              exit
+              sudo dnf install mysql-community-server -y --nogpgcheck
+              sudo bash -c 'echo "skip-grant-tables" >> /etc/my.cnf'
+              sudo systemctl enable mysqld --now
+              sudo mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
+              sudo mysql --execute="GRANT ALL PRIVILEGES ON *.* TO 'root'@'host';"
+              sudo mysql --execute="FLUSH PRIVILEGES;"
               java -jar /home/ec2-user/app/employee-0.0.1-SNAPSHOT.jar
               
