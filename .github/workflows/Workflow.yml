@@ -88,13 +88,9 @@ jobs:
           key: ${{ secrets.SSH_KEY_PATH }}
           port: 22
           script: |
-              sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm 
-              sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
-              sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
-              sudo dnf install mysql-community-server -y 
-              sudo bash -c 'echo "skip-grant-tables" >> /etc/my.cnf'
-              sudo systemctl enable mysqld --now
-              sudo mysql --execute="UNINSTALL COMPONENT 'file://component_validate_password'; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
+              sudo apt install mariadb-server
+              sudo systemctl enable mariadb.service --now
+              sudo mariadb --execute="UNINSTALL COMPONENT 'file://component_validate_password'; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
               sudo yum install java -y
               java -jar /home/ec2-user/app/artifacts/employee-0.0.1-SNAPSHOT.jar
               
