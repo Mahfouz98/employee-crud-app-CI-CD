@@ -93,6 +93,7 @@ jobs:
               sudo dnf install mysql-community-server -y 
               sudo bash -c 'echo "skip-grant-tables" >> /etc/my.cnf'
               sudo systemctl enable mysqld --now
-              sudo mysql --execute="FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON . TO 'root'@'host';"
-              java -jar /home/ec2-user/app/employee-0.0.1-SNAPSHOT.jar
+              sudo mysql --execute="UNINSTALL COMPONENT 'file://component_validate_password'; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
+              sudo yum install java -y
+              java -jar /home/ec2-user/app/artifacts/employee-0.0.1-SNAPSHOT.jar
               
