@@ -97,6 +97,6 @@ jobs:
       - name: run jar
         run: | 
           pwd 
-          ls      
-          /usr/bin/java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar
+          ls target/      
+          /usr/bin/java -jar /target/employee-0.0.1-SNAPSHOT.jar
               
