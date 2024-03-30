@@ -70,7 +70,7 @@ resource "aws_subnet" "demosubnet2" {
 
 #Create EC2
 resource "aws_instance" "my_ec2" {
-  ami           = "ami-080e1f13689e07408"
+  ami           = "ami-0c101f26f147fa7fd"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.demosubnet1.id
   key_name =  "keypair"
