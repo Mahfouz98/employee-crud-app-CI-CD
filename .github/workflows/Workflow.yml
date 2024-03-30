@@ -73,7 +73,7 @@ jobs:
       - name: copy file via ssh key
         uses: appleboy/scp-action@v0.1.7
         with:
-          timeout: 120
+          timeout: 120s
           host: ${{ steps.EIP.outputs.ec2_address }}
           username: ec2-user
           port: 22
