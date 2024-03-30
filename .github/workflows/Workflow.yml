@@ -70,6 +70,7 @@ jobs:
         run: |
           terraform-bin output -raw instance_public_ip > ip_address.txt
           echo "ec2_address=$(cat ip_address.txt)" >> $GITHUB_OUTPUT
+          sleep 5
       - name: copy file via ssh key
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -93,4 +94,4 @@ jobs:
               sudo systemctl enable mariadb --now
               sudo mariadb --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';"
               sudo apt install openjdk-17-jdk openjdk-17-jre -y
-              sudo bash -c 'echo -e java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar &'
+              sudo bash -c 'java -jar /home/ubuntu/app/artifacts/employee-0.0.1-SNAPSHOT.jar &'
