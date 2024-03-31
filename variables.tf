@@ -18,3 +18,10 @@ variable "aws_region" {
   type        = string
 }
 
+variable "keypair" {
+  description = "AWS keypair for Ec2"
+}
+
+variable "bucket_name" {
+  description = "S3 bucket name"
+}

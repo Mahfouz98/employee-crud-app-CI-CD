@@ -74,7 +74,7 @@ resource "aws_instance" "my_ec2" {
   ami           = "ami-080e1f13689e07408"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.demosubnet1.id
-  key_name =  "keypair"
+  key_name =  var.keypair
   vpc_security_group_ids = [ aws_security_group.example.id ]
   tags = {
     Name = "Java-App-EC2"
